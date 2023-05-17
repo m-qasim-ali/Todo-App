@@ -1,0 +1,137 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+:root {
+  --bgColor: rgb(40, 40, 40);
+  --bgColorHover: rgb(92, 92, 92);
+  --outlineBorderColor: rgba(248, 248, 248, 0.555);
+  --fontColor: rgb(231, 231, 231);
+  --bodyColor: rgb(30, 30, 30);
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+html{
+  font-size: 16px;
+}
+
+@media (max-width: 500px) {
+  html{
+    font-size: 14px;
+  }
+}
+
+body {
+  background-color: var(--bodyColor);
+}
+
+.header {
+  background-color: var(--bgColor);
+  width: 100%;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.btn {
+  padding: 5px;
+  border: 1px solid var(--fontColor);
+  border-radius: 0.5rem;
+}
+
+input[type='text'] {
+  width: 120px;
+}
+
+
+.btn:hover {
+  background-color: var(--bgColorHover);
+}
+
+.icon {
+  color: var(--fontColor);
+}
+
+.label {
+  color: var(--fontColor);
+  font-weight: 500;
+  font-size: 1.2rem;
+  white-space: nowrap;
+}
+
+.catInput {
+  outline: none;
+  border-radius: 0.25rem;
+  border: 1px dashed var(--outlineBorderColor);
+  background-color: inherit;
+  color: var(--fontColor);
+}
+
+.list-box {
+  border: 1px solid var(--outlineBorderColor);
+  border-radius: 0.5rem;
+  background-color: var(--bgColor);
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.list-header h2 {
+  color: var(--fontColor);
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+.btn-list {
+  padding: 5px;
+}
+
+.icon-list {
+  color: var(--bgColorHover);
+}
+
+.btn-list:hover .icon-list {
+  color: var(--fontColor);
+}
+
+.list-entry {
+  background-color: inherit;
+  border: 1px solid var(--outlineBorderColor);
+  outline: none;
+  border-radius: 0.25rem;
+  color: var(--fontColor);
+}
+
+.list-icon-btn {
+  padding: 5px;
+  border: 1px solid transparent;
+}
+
+.list-icon-btn:hover {
+  border: 1px solid var(--fontColor);
+  background-color: inherit;
+  border-radius: 0.5rem;
+}
+
+.data {
+  color: var(--fontColor);
+}
+
+.item-input {
+  background-color: inherit;
+  border: 1px dashed var(--outlineBorderColor);
+  border-radius: 0.25rem;
+  outline: none;
+}
+
+.modalBox{
+  background-color: var(--fontColor);
+  border: 1px solid var(--outlineBorderColor);
+}
+
+.modal-btn{
+  background-color: var(--fontColor);
+  color: var(--bodyColor);
+  border: 1px solid var(--bgColor);
+}
+
