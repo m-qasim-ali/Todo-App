@@ -254,9 +254,7 @@ const updateItem = (e) => {
     itemField.remove();
   }
   else {
-    // console.log(e.target.closest('.cat'));
     data[e.target.closest('.cat').id].items[e.target.closest('.item').id] = itemField.value.trim();
-    console.log(data);
     iconContainer.dataset.icon = "wrench";
     iconContainer.innerHTML = wrenchIcon;
     toggleValued = `<div class="data flex-1">${itemField.value.trim()}</div>`
@@ -490,7 +488,6 @@ window.addEventListener("load", () => {
   let localData = localStorage.getItem("data");
   if (localData) {
     data = JSON.parse(localData);
-    console.log(data);
   }
   themeBtn.addEventListener('click', updateTheme);
   showCategories();
