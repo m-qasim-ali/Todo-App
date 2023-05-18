@@ -15,13 +15,17 @@
   font-family: 'Poppins', sans-serif;
 }
 
-html{
+html {
   font-size: 16px;
 }
 
 @media (max-width: 500px) {
-  html{
+  html {
     font-size: 14px;
+  }
+
+  .list-header h2 {
+    font-weight: 500!important;
   }
 }
 
@@ -44,7 +48,6 @@ body {
 input[type='text'] {
   width: 120px;
 }
-
 
 .btn:hover {
   background-color: var(--bgColorHover);
@@ -78,6 +81,7 @@ input[type='text'] {
 
 .list-header h2 {
   color: var(--fontColor);
+  word-break: break-all;
   font-weight: 700;
   font-size: 1.5rem;
 }
@@ -114,6 +118,7 @@ input[type='text'] {
 }
 
 .data {
+  word-break: break-all;
   color: var(--fontColor);
 }
 
@@ -124,14 +129,20 @@ input[type='text'] {
   outline: none;
 }
 
-.modalBox{
+.modalBox {
   background-color: var(--fontColor);
   border: 1px solid var(--outlineBorderColor);
 }
 
-.modal-btn{
+.modal-btn {
   background-color: var(--fontColor);
   color: var(--bodyColor);
   border: 1px solid var(--bgColor);
 }
 
+.dragging {
+  box-shadow: inset 0 0 0 3px blue;
+  padding: 5px;
+  transform: scale(0.98);
+  cursor: grabbing;
+}

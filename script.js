@@ -85,6 +85,7 @@ const updateItems = document.getElementsByClassName('updateItem');
 const sort_items = document.getElementsByClassName('sort');
 const restoreList = document.getElementById("restoreList");
 const removeList = document.getElementById("removeList");
+let items = document.getElementsByClassName("item");
 
 // function handler
 let theme = 'dark';
@@ -107,6 +108,8 @@ const updateTheme = () => {
     i++;
   }
 };
+
+let draggedItems = null;
 
 const addNewCategory = (e) => {
   e.preventDefault();
@@ -166,7 +169,7 @@ const addNewCategory = (e) => {
     <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" viewBox="0 0 256 256" class="icon"><path d="M128,128a12,12,0,0,1-12,12H48a12,12,0,0,1,0-24h68A12,12,0,0,1,128,128ZM48,76H180a12,12,0,0,0,0-24H48a12,12,0,0,0,0,24Zm52,104H48a12,12,0,0,0,0,24h52a12,12,0,0,0,0-24Zm132.49-20.49a12,12,0,0,0-17,0L196,179V112a12,12,0,0,0-24,0v67l-19.51-19.52a12,12,0,0,0-17,17l40,40a12,12,0,0,0,17,0l40-40A12,12,0,0,0,232.49,159.51Z"></path></svg>
     </button>
   </div>
-  <div class="flex flex-col gap-5 divide-y items-container">
+  <div class="flex flex-col justify-center items-container divide-y">
     
   </div>
 </div>`;
@@ -186,7 +189,7 @@ const AddNewItem = (e) => {
   const id = `${cat.id}item${data[cat.id].nextItemNumber}`;
   data[cat.id].items[id] = inputField.value;
   data[cat.id].nextItemNumber = data[cat.id].nextItemNumber + 1;
-  const item = `<div class="item flex items-center gap-4 py-2" id="${id}">
+  const item = `<div class="item flex items-center gap-2 sm:gap-4 py-2" draggable=true id="${id}">
   <div class="data flex-1">
     ${inputField.value}
   </div>
@@ -235,6 +238,8 @@ const AddNewItem = (e) => {
   container.insertAdjacentHTML('afterbegin', item);
   registerItemDelEvents();
   registerItemUpdateEvents();
+  items = document.getElementsByClassName('item');
+  registerDragStartEvent();
 };
 
 const updateItem = (e) => {
@@ -288,6 +293,47 @@ const deleteItem = (e) => {
   document.getElementById(item.id).remove();
 };
 
+const dragEnter = (e) => {
+  e.preventDefault();
+  e.target.closest('.item').classList.add('dragging');
+}
+
+const dragOver = (e) => {
+  e.preventDefault();
+  e.target.closest('.item').classList.add('dragging');
+}
+
+const dragLeave = (e) => {
+  e.target.closest('.item').classList.remove('dragging');
+}
+
+const drop = (e) => {
+  e.target.closest('.item').classList.remove('dragging');
+
+  const id = e.dataTransfer.getData('text/plain');
+  const draggable = document.getElementById(id);
+  const html = draggable.outerHTML;
+
+  e.target.closest('.item').insertAdjacentHTML('beforebegin', html);
+  draggable.classList.remove('dragging');
+  draggable.remove();
+  registerDragStartEvent();
+  registerItemDelEvents();
+  registerItemUpdateEvents();
+}
+
+const dragStart = (e) => {
+  const items = e.target.closest('.items-container').getElementsByClassName('item')
+  draggedItems = items;
+  e.dataTransfer.setData('text/plain', e.target.closest('.item').id);
+  for (let i = 0; i < items.length; i++) {
+    items[i].addEventListener('dragenter', dragEnter)
+    items[i].addEventListener('dragover', dragOver);
+    items[i].addEventListener('dragleave', dragLeave);
+    items[i].addEventListener('drop', drop);
+  }
+}
+
 const registerCatEvents = () => {
   for (let i = 0; i < delCat.length; i++) {
     delCat[i].addEventListener('click', deleteCat);
@@ -297,6 +343,12 @@ const registerCatEvents = () => {
 const registerSortEvents = () => {
   for (let i = 0; i < sort_items.length; i++) {
     sort_items[i].addEventListener('click', sortItems);
+  }
+};
+
+const registerDragStartEvent = () => {
+  for (let i = 0; i < items.length; i++) {
+    items[i].addEventListener('dragstart', dragStart);
   }
 };
 
@@ -323,7 +375,7 @@ const showCategories = () => {
   let itemsList = ``;
   for (let cat in data) {
     for (let item in data[cat].items) {
-      itemsList += `<div class="item flex items-center gap-2 sm:gap-4 py-2" id="${item}">
+      itemsList += `<div class="item flex items-center gap-2 sm:gap-4 py-2" id="${item}" draggable="true">
           <div class="data flex-1">
             ${data[cat].items[item]}
           </div>
@@ -416,7 +468,7 @@ const showCategories = () => {
         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" viewBox="0 0 256 256" class="icon"><path d="M128,128a12,12,0,0,1-12,12H48a12,12,0,0,1,0-24h68A12,12,0,0,1,128,128ZM48,76H180a12,12,0,0,0,0-24H48a12,12,0,0,0,0,24Zm52,104H48a12,12,0,0,0,0,24h52a12,12,0,0,0,0-24Zm132.49-20.49a12,12,0,0,0-17,0L196,179V112a12,12,0,0,0-24,0v67l-19.51-19.52a12,12,0,0,0-17,17l40,40a12,12,0,0,0,17,0l40-40A12,12,0,0,0,232.49,159.51Z"></path></svg>
       </button>
     </div>
-    <div class="flex flex-col gap-5 divide-y items-container">
+    <div class="flex flex-col justify-center items-container divide-y">
       ${itemsList}
     </div>
   </div>`;
@@ -424,6 +476,12 @@ const showCategories = () => {
   }
 
   main.innerHTML = html;
+  registerCatEvents();
+  registerItemForms();
+  registerItemDelEvents();
+  registerItemUpdateEvents();
+  registerSortEvents();
+  registerDragStartEvent();
 };
 
 // Adding events
@@ -437,11 +495,6 @@ window.addEventListener("load", () => {
   themeBtn.addEventListener('click', updateTheme);
   showCategories();
   catForm.addEventListener('submit', addNewCategory);
-  registerCatEvents();
-  registerItemDelEvents();
-  registerItemForms();
-  registerItemUpdateEvents();
-  registerSortEvents();
   restoreList.addEventListener('click', (e) => {
     e.preventDefault();
     data = defaultData;
