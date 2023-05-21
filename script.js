@@ -143,32 +143,32 @@ const addNewCategory = (e) => {
     </button>
   </div>
 
-  <div class="inputBox flex gap-6">
-    <form action="" class="flex-1 flex gap-4 itemForm">
-      <input
-        class="flex-1 list-entry p-2 px-4"
-        placeholder="New list entry"
-        type="text"
-      />
-      <button type="submit" class="list-icon-btn">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="28"
-          height="28"
-          fill="currentColor"
-          viewBox="0 0 256 256"
-          class="icon"
-        >
-          <path
-            d="M144.49,136.49l-40,40a12,12,0,0,1-17-17L107,140H24a12,12,0,0,1,0-24h83L87.51,96.49a12,12,0,0,1,17-17l40,40A12,12,0,0,1,144.49,136.49ZM192,28H136a12,12,0,0,0,0,24h52V204H136a12,12,0,0,0,0,24h56a20,20,0,0,0,20-20V48A20,20,0,0,0,192,28Z"
-          ></path>
-        </svg>
+  <div class="inputBox flex gap-2 sm:gap-6">
+      <form action="" class="flex-1 flex gap-2 sm:gap-4 itemForm">
+        <input
+          class="flex-1 list-entry p-2 px-4"
+          placeholder="New list entry"
+          type="text"
+        />
+        <button type="submit" class="list-icon-btn">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="28"
+            height="28"
+            fill="currentColor"
+            viewBox="0 0 256 256"
+            class="icon"
+          >
+            <path
+              d="M144.49,136.49l-40,40a12,12,0,0,1-17-17L107,140H24a12,12,0,0,1,0-24h83L87.51,96.49a12,12,0,0,1,17-17l40,40A12,12,0,0,1,144.49,136.49ZM192,28H136a12,12,0,0,0,0,24h52V204H136a12,12,0,0,0,0,24h56a20,20,0,0,0,20-20V48A20,20,0,0,0,192,28Z"
+            ></path>
+          </svg>
+        </button>
+      </form>
+      <button class="list-icon-btn sort">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" viewBox="0 0 256 256" class="icon"><path d="M128,128a12,12,0,0,1-12,12H48a12,12,0,0,1,0-24h68A12,12,0,0,1,128,128ZM48,76H180a12,12,0,0,0,0-24H48a12,12,0,0,0,0,24Zm52,104H48a12,12,0,0,0,0,24h52a12,12,0,0,0,0-24Zm132.49-20.49a12,12,0,0,0-17,0L196,179V112a12,12,0,0,0-24,0v67l-19.51-19.52a12,12,0,0,0-17,17l40,40a12,12,0,0,0,17,0l40-40A12,12,0,0,0,232.49,159.51Z"></path></svg>
       </button>
-    </form>
-    <button class="list-icon-btn sort">
-    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" viewBox="0 0 256 256" class="icon"><path d="M128,128a12,12,0,0,1-12,12H48a12,12,0,0,1,0-24h68A12,12,0,0,1,128,128ZM48,76H180a12,12,0,0,0,0-24H48a12,12,0,0,0,0,24Zm52,104H48a12,12,0,0,0,0,24h52a12,12,0,0,0,0-24Zm132.49-20.49a12,12,0,0,0-17,0L196,179V112a12,12,0,0,0-24,0v67l-19.51-19.52a12,12,0,0,0-17,17l40,40a12,12,0,0,0,17,0l40-40A12,12,0,0,0,232.49,159.51Z"></path></svg>
-    </button>
-  </div>
+    </div>
   <div class="flex flex-col justify-center items-container divide-y">
     
   </div>
